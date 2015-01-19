@@ -10,8 +10,8 @@ import ru.etcs.utils.FontLoader;
 
 public class Main extends Sprite {
 
-    [Embed(source = "/../resources/verdanaBold3.swf", mimeType="application/octet-stream")]
-    public var fontClass:Class;
+    //[Embed(source = "../resources/verdanaBold3.swf", mimeType="application/octet-stream")]
+    //public var fontClass:Class;
     
     private var loader:FontLoader;
     
@@ -20,7 +20,7 @@ public class Main extends Sprite {
     private var isComplete:Boolean;
     
     public function Main() {
-            addEventListener(Event.ADDED_TO_STAGE, onAdded);
+        addEventListener(Event.ADDED_TO_STAGE, onAdded);
     }
     
     private function onAdded(event:Event):void {
@@ -38,11 +38,13 @@ public class Main extends Sprite {
     
     private function onCompleteSWF(event:Event):void {
         trace(this, "onCompleteSWF: " + loader.fonts);
+        console.defaultTextFormat = new TextFormat("Verdana3");
+        console.embedFonts = true;
         console.text += loader.fonts.toString() + "\n";
         loader.removeEventListener(Event.COMPLETE, onCompleteSWF);
         loader.addEventListener(Event.COMPLETE, onCompleteBytes);
         console.text += "Loading Bytes... \n";
-        loader.loadBytes(new fontClass());
+        //loader.loadBytes(new fontClass());
     }
     
     private function onCompleteBytes(event:Event):void {
